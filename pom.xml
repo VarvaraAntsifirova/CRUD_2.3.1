@@ -94,7 +94,7 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!--Hibernate dependencies-->
+      <!--  Hibernate dependencies-->
 
         <dependency>
             <groupId>org.hibernate</groupId>

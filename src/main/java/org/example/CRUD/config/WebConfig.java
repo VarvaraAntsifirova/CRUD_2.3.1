@@ -1,7 +1,4 @@
-package web.config;
-
-
-import org.apache.commons.dbcp2.BasicDataSource;
+package org.example.CRUD.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@ComponentScan("web")
+@ComponentScan("org.example.CRUD")
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
@@ -37,7 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
 
-    private Environment env;
+    private final Environment env;
 
     @Autowired
     public WebConfig(ApplicationContext applicationContext, Environment env) {
@@ -76,7 +73,7 @@ public class WebConfig implements WebMvcConfigurer {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManagerFactoryBean.setPackagesToScan("web.model");
+        entityManagerFactoryBean.setPackagesToScan("org.example.CRUD.models");
         entityManagerFactoryBean.afterPropertiesSet();
         return entityManagerFactoryBean.getObject();
     }
