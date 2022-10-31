@@ -7,10 +7,10 @@
 </head>
 <body>
 <div th:each="user:${users}">
-    <a th:href="@{/views/edit}" th:text="${user.getFirstName()}">user</a>
+    <a th:href="@{/users/edit}" th:text="${user.getFirstName()}">user</a>
 </div>
-<a th:href="@{/views/new}">Create new user</a>
-<a th:href="@{/views/edit}">Edit user</a>
+<a th:href="@{/users/new}">Create new user</a>
+<a th:href="@{/users/edit}">Edit user</a>
 
 </body>
 </html>

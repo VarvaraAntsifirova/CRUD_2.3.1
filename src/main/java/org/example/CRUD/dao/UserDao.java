@@ -27,7 +27,7 @@ public class UserDao {
 
     public List<User> getAllUsers() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<User> userList = entityManager.createNativeQuery("select u from User u").getResultList();
+        List<User> userList = entityManager.createNativeQuery("SELECT * FROM users  ", User.class).getResultList();
         return userList;
     }
 
