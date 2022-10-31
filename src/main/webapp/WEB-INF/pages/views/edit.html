@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit profile</title>
+</head>
+<body>
+<form method="post" action="/users/edit">
+    <label for="firstName">Name</label>
+    <input name="firstName" type="text" id="firstName"/>
+
+    <br>
+
+    <label for="lastName">Last Name</label>
+    <input name="lastName" type="text" id="lastName"/>
+
+    <br>
+
+    <label for="age">Age</label>
+    <input name="age" type="text" id="age"/>
+
+    <br>
+
+    <input type="submit" value="Edit!"/>
+
+</form>
+<a th:href="@{/users}">Delete user</a>
+
+</body>
+</html>
