@@ -16,33 +16,44 @@ public class UserDao {
         this.entityManagerFactory = entityManagerFactory;
     }
 
- /*   public void createTable() {
-        EntityManager entityManager = entityManagerfactory.createEntityManager();
-        entityManager.createNativeQuery("create table Users(" +
-                "id integer primary key auto_increment," +
-                "firstName varchar(20)," +
-                "lastName varchar(30)," +
-                "age int);");
-    }*/
 
     public List<User> getAllUsers() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        List<User> userList = entityManager.createNativeQuery("SELECT * FROM users  ", User.class).getResultList();
-        return userList;
+        List<User> list = entityManager.createQuery("SELECT u FROM User u ", User.class).getResultList();
+        return list;
     }
 
-    public void createUser(String firstName, String lastName, int age) {
+    public void createUser(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.createNativeQuery("insert into Users values firstName, lastName, age;");
+        entityManager.getTransaction().begin();
+        entityManager.persist(user);
+        entityManager.flush();
+        entityManager.getTransaction().commit();
     }
 
     public void deleteUser(int id) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.createNativeQuery("delete u from User u where id= :id;")
-                .setParameter("id", id);
+        entityManager.getTransaction().begin();
+        entityManager.remove(entityManager.contains(showUser(id)) ? showUser(id) : entityManager.merge(showUser(id)));
+        entityManager.flush();
+        entityManager.getTransaction().commit();
     }
 
-    public void updateUser() {
-
+    public void updateUser(int id, User user) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager.getTransaction().begin();
+        User userToBeUpdate = showUser(id);
+        userToBeUpdate.setFirstName(user.getFirstName());
+        userToBeUpdate.setLastName(user.getLastName());
+        userToBeUpdate.setAge(user.getAge());
+        entityManager.merge(userToBeUpdate);
+        entityManager.flush();
+        entityManager.getTransaction().commit();
     }
+
+    public User showUser(int id) {
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        return entityManager.find(User.class, id);
+    }
+
 }
