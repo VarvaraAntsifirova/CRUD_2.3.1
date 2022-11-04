@@ -1,4 +1,4 @@
-package org.example.CRUD.models;
+package org.example.CRUD.model;
 
 import java.util.Objects;
 

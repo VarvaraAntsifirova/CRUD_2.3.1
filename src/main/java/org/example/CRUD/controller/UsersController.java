@@ -1,7 +1,7 @@
-package org.example.CRUD.controllers;
+package org.example.CRUD.controller;
 
-import org.example.CRUD.Services.UserService;
-import org.example.CRUD.models.User;
+import org.example.CRUD.service.UserService;
+import org.example.CRUD.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +32,7 @@ public class UsersController {
     }
 
     @GetMapping("/new")
-    public String newUser(Model model) {
+    public String createNewUser(Model model) {
         model.addAttribute("user", new User());
         return "/views/new";
     }
