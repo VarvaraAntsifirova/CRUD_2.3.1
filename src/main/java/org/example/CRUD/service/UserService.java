@@ -2,7 +2,6 @@ package org.example.CRUD.service;
 
 import org.example.CRUD.dao.UserDao;
 import org.example.CRUD.model.User;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
